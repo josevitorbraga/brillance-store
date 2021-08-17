@@ -1,0 +1,21 @@
+{
+  "name": "brillance-store",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Ecommerce for Brillance",
+  "main": "server.js",
+  "repository": "https://github.com/josevitorbraga/brillance-store.git",
+  "author": "Jose Braga <josevitor2712@gmail.com>",
+  "license": "none",
+  "private": true,
+  "scripts": {
+    "dev:server": "yarn nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12"
+  }
+}
