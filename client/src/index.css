@@ -25,8 +25,8 @@ header .header a{
   color: #393939;
 }
 header .header img{
-  width: 186px;
-  height: 132px;
+  width: 161px;
+  height: 117px;
 }
 
 header .header-content{
@@ -37,11 +37,15 @@ header .header-content{
 footer{
   position: fixed;
   bottom: 0;
+  left: 0;
 
   width: 100%;
 
   display: flex;
   justify-content: center;
+
+  background-color: #dfccca;
+  color: #595757;
 }
 .sliderContent img{
   width: 100%;

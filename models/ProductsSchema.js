@@ -8,6 +8,7 @@ const productsSchema = new Schema({
   name: String,
   description: String,
   price: String,
+  category: String,
   created_at: {
     type: Date,
     default: brazilDate,

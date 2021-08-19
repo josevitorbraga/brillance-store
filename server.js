@@ -7,6 +7,7 @@ import routes from "./routes/index.js";
 dotenv.config();
 
 const db = process.env.MONGO_DB;
+const port = process.env.PORT;
 
 const app = express();
 
@@ -25,7 +26,7 @@ const run = async () => {
     .then(() => console.log("🎲 Database connected..."))
     .catch(err => console.log(err));
 
-  app.listen("3333", () => {
+  app.listen(port, () => {
     console.log("🚀 Backend Iniciado na porta 3333");
   });
 };

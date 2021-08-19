@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { SideMenuList, SideMenuWrapper } from "./styles";
 import { BiCartAlt, BiHeart } from "react-icons/bi";
@@ -8,33 +9,33 @@ export default function SideMenu() {
     <SideMenuWrapper>
       <SideMenuList>
         <li>
-          <a href="#colars">Em destaque</a>
+          <Link to="/">Em destaque</Link>
         </li>
         <li>
-          <a href="#colars">Colares</a>
+          <Link to="/categoria/colares">Colares</Link>
         </li>
         <li>
-          <a href="#rings">Anéis</a>
+          <Link to="/categoria/aneis">Anéis</Link>
         </li>
         <li>
-          <a href="#bracelets">Pulseiras</a>
+          <Link to="/categoria/pulseiras">Pulseiras</Link>
         </li>
         <li>
-          <a href="#brincos">Brincos</a>
+          <Link to="/categoria/brincos">Brincos</Link>
         </li>
       </SideMenuList>
       <div className="wrapper">
         <div className="interactiveMenu">
-          <a href="#cart">
+          <Link to="/cart">
             <BiCartAlt size={34} />
             <span>Carrinho</span>
-          </a>
+          </Link>
         </div>
         <div className="interactiveMenu">
-          <a href="#like">
+          <Link to="#">
             <BiHeart size={34} />
             <span>Like</span>
-          </a>
+          </Link>
         </div>
       </div>
     </SideMenuWrapper>
