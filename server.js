@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import cookies from "cookie-parser";
 import dotenv from "dotenv";
 
 import routes from "./routes/index.js";
@@ -13,6 +14,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("tmp"));
+app.use(cookies());
 app.use(routes);
 
 const run = async () => {

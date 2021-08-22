@@ -1,10 +1,22 @@
 import { Router } from "express";
+import multer from "multer";
+
 import Product from "../models/ProductsSchema.js";
+import uploadConfig from "../config/upload.js";
+import { isAuth, updateImage } from "../utils/utils.js";
 
 const productsRouter = Router();
+const upload = multer(uploadConfig);
 
 // GET ALL PRODUCTS
 productsRouter.get("/", async (req, res) => {
+  const name = req.query.name || "";
+  const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
+  const products = await Product.find({ ...nameFilter });
+  res.json(products);
+});
+
+productsRouter.get("/auth", isAuth, async (req, res) => {
   const name = req.query.name || "";
   const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
   const products = await Product.find({ ...nameFilter });
@@ -27,8 +39,28 @@ productsRouter.get("/:id", async (req, res) => {
   res.json(product);
 });
 
+productsRouter.patch(
+  "/:id/image",
+  isAuth,
+  upload.single("image"),
+  async (request, response) => {
+    try {
+      const { id } = request.params;
+
+      const product = await updateImage({
+        product_id: id,
+        imageFileName: request.file.filename,
+      });
+
+      return response.send(product.image);
+    } catch (err) {
+      return response.json({ error: err.message });
+    }
+  }
+);
+
 // CREATE A NEW PRODUCT
-productsRouter.post("/", (req, res) => {
+productsRouter.post("/", isAuth, (req, res) => {
   const { name, description, price, category } = req.body;
   const newProduct = new Product({
     name,
@@ -40,7 +72,7 @@ productsRouter.post("/", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      res.json({ message: "Product created" });
+      res.send(newProduct._id);
     }
   });
 });

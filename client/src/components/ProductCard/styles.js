@@ -15,11 +15,16 @@ export const Container = styled.div`
 
     height: 165px;
     width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  /* &:hover .card-body {
-    visibility: visible;
-  } */
+  a svg {
+    margin-top: 1rem;
+    color: #52514f;
+  }
 
   .card-body {
     display: flex;

@@ -34,6 +34,14 @@ header .header-content{
   border-bottom: 1px solid #000;
 }
 
+main {
+  margin-bottom: 5rem;
+}
+
+main .videoBanner{
+  cursor: pointer;
+}
+
 footer{
   position: fixed;
   bottom: 0;
@@ -42,7 +50,7 @@ footer{
   width: 100%;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 
   background-color: #dfccca;
   color: #595757;

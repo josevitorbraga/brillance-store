@@ -11,6 +11,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage.js";
+import AdminPage from "./pages/AdminPage/AdminPage";
+import CreateProductPage from "./pages/CreateProductPage/CreateProductPage";
 
 export default function App() {
   const ref = useRef();
@@ -40,8 +42,10 @@ export default function App() {
 
       <main>
         <Switch>
+          <Route path="/admin/product/create" component={CreateProductPage} />
           <Route path="/produto/:productId" component={ProductPage} />
           <Route path="/categoria/:category" component={CategoryPage} />
+          <Route path="/admin/home" component={AdminPage} exact />
           <Route path="/admin/login" component={LoginPage} exact />
           <Route path="/" component={HomePage} exact />
         </Switch>

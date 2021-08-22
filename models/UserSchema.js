@@ -4,15 +4,9 @@ const { Schema, model } = mongoose;
 const currentDate = new Date();
 const brazilDate = currentDate.setHours(currentDate.getHours() - 3);
 
-const productsSchema = new Schema({
-  name: String,
-  description: String,
-  price: String,
-  category: String,
-  image: {
-    type: String,
-    default: "defaultImg.jpg",
-  },
+const userSchema = new Schema({
+  user: String,
+  password: String,
   created_at: {
     type: Date,
     default: brazilDate,
@@ -23,6 +17,6 @@ const productsSchema = new Schema({
   },
 });
 
-const Product = model("Product", productsSchema);
+const User = model("User", userSchema);
 
-export default Product;
+export default User;
