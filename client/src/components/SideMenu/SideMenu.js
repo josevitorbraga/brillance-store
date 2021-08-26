@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import CartQuantityBadge from "../CartQuantityBadge/CartQuantityBadge";
+
 import { SideMenuList, SideMenuWrapper } from "./styles";
 import { BiCartAlt, BiHeart } from "react-icons/bi";
 
@@ -29,6 +31,7 @@ export default function SideMenu() {
           <Link to="/cart">
             <BiCartAlt size={34} />
             <span>Carrinho</span>
+            <CartQuantityBadge />
           </Link>
         </div>
         <div className="interactiveMenu">

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Container, Content } from "./styles";
 
@@ -17,6 +17,19 @@ export default function LoginPage() {
       history.replace("/admin/home");
     }
   };
+
+  useEffect(() => {
+    const checkIsAlreadyLoggedIn = async () => {
+      const response = await axios.get("/users/check");
+      if (response.status === 200) {
+        history.replace("/admin/home");
+      } else {
+        console.log(response.data);
+      }
+    };
+    checkIsAlreadyLoggedIn();
+  }, []);
+
   return (
     <Container>
       <div className="loginInfo">

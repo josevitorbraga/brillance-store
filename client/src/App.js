@@ -13,43 +13,53 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage.js";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import CreateProductPage from "./pages/CreateProductPage/CreateProductPage";
+import EditProductPage from "./pages/EditProductPage/EditProductPage";
+import CartProvider from "./context/CartContext";
+import CartPage from "./pages/CartPage/CartPage";
 
 export default function App() {
   const ref = useRef();
   const isVisible = useOnScreen(ref);
 
   return (
-    <BrowserRouter>
-      <header>
-        <div ref={ref} className="header">
-          <div className="header-content"></div>
-          <Link to="/">
-            <img className="logoIcon" src={brillanceLogo} alt="Brillance" />
-          </Link>
-          <div className="header-content"></div>
-        </div>
-        <ScrolledHeader isOnTop={isVisible}>
-          <div className="contentHeader">
-            <img src={miniLogo} alt="Brillance Store" />
-            <div className="cart">
-              <Link to="/cart">
-                <BiCartAlt size={30} /> <h2> Carrinho</h2>
-              </Link>
-            </div>
+    <CartProvider>
+      <BrowserRouter>
+        <header>
+          <div ref={ref} className="header">
+            <div className="header-content"></div>
+            <Link to="/">
+              <img className="logoIcon" src={brillanceLogo} alt="Brillance" />
+            </Link>
+            <div className="header-content"></div>
           </div>
-        </ScrolledHeader>
-      </header>
+          <ScrolledHeader isOnTop={isVisible}>
+            <div className="contentHeader">
+              <img src={miniLogo} alt="Brillance Store" />
+              <div className="cart">
+                <Link to="/cart">
+                  <BiCartAlt size={30} /> <h2> Carrinho</h2>
+                </Link>
+              </div>
+            </div>
+          </ScrolledHeader>
+        </header>
 
-      <main>
-        <Switch>
-          <Route path="/admin/product/create" component={CreateProductPage} />
-          <Route path="/produto/:productId" component={ProductPage} />
-          <Route path="/categoria/:category" component={CategoryPage} />
-          <Route path="/admin/home" component={AdminPage} exact />
-          <Route path="/admin/login" component={LoginPage} exact />
-          <Route path="/" component={HomePage} exact />
-        </Switch>
-      </main>
-    </BrowserRouter>
+        <main>
+          <Switch>
+            <Route path="/cart" component={CartPage} />
+            <Route path="/admin/product/create" component={CreateProductPage} />
+            <Route
+              path="/produto/edit/:productId"
+              component={EditProductPage}
+            />
+            <Route path="/produto/:productId" component={ProductPage} />
+            <Route path="/categoria/:category" component={CategoryPage} />
+            <Route path="/admin/home" component={AdminPage} exact />
+            <Route path="/admin/login" component={LoginPage} exact />
+            <Route path="/" component={HomePage} exact />
+          </Switch>
+        </main>
+      </BrowserRouter>
+    </CartProvider>
   );
 }

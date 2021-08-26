@@ -39,6 +39,18 @@ productsRouter.get("/:id", async (req, res) => {
   res.json(product);
 });
 
+// Route that edits a product by his id
+productsRouter.put("/edit/:id", isAuth, async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+  const { name, description, price } = req.body;
+  product.name = name;
+  product.description = description;
+  product.price = price;
+  await product.save();
+  res.status(200).json(product);
+});
+
 productsRouter.patch(
   "/:id/image",
   isAuth,

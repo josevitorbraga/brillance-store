@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { Container } from "./styles";
-import { BiPlus } from "react-icons/bi";
+import { BiPlus, BiArrowBack } from "react-icons/bi";
 import axios from "axios";
 
 export default function CreateProductPage() {
@@ -50,6 +50,10 @@ export default function CreateProductPage() {
 
   return (
     <>
+      <Link to="/admin/home">
+        <BiArrowBack />
+        Cancelar
+      </Link>
       {nextPhase ? (
         <Container>
           <h2>Adicionar novo produto</h2>

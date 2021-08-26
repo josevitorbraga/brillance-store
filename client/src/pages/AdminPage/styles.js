@@ -18,13 +18,12 @@ export const Container = styled.div`
   flex-direction: column;
 
   .info {
-    display: flex;
-    justify-content: center;
-
-    font-weight: 700;
+    font-weight: 300;
     font-size: 2rem;
+    color: #c99b95;
 
     margin: 2rem 0;
+    border-bottom: 1px solid #eaecef;
   }
 
   .header {

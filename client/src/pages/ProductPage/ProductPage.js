@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { Container, Data, ImageContainer } from "./styles";
-import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Container, Data, ImageContainer, Header } from "./styles";
+import { BiArrowBack, BiCartAlt } from "react-icons/bi";
+import { Link, useHistory } from "react-router-dom";
+
+import { useCartContext } from "../../context/CartContext";
 
 export default function ProductPage(props) {
   const productId = props.match.params.productId;
+  const history = useHistory();
+
   const [product, setProduct] = useState({});
+
+  const { addToCart } = useCartContext();
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    history.replace("/cart");
+  };
 
   useEffect(() => {
     async function getProduct() {
@@ -19,12 +30,16 @@ export default function ProductPage(props) {
 
   return (
     <>
-      <div className="header">
+      <Header>
         <Link to="/">
           <BiArrowBack />
           Voltar ao catálogo
         </Link>
-      </div>
+        <Link to="/cart">
+          Ir ao carrinho
+          <BiCartAlt />
+        </Link>
+      </Header>
       <Container>
         <ImageContainer>
           <img src={`/${product.image}`} alt={`/${product.image}`} />
@@ -33,6 +48,9 @@ export default function ProductPage(props) {
           <h1>{product.name}</h1>
           <p>{product.description}</p>
           <h2>R$ {product.price}</h2>
+          <button onClick={() => handleAddToCart()}>
+            Adicionar ao carrinho
+          </button>
         </Data>
       </Container>
     </>

@@ -24,8 +24,36 @@ export const Container = styled.div`
   margin: 5rem 0;
 `;
 export const Data = styled.div`
-  p {
-    color: #c99b95;
+  form {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: #c99b95;
+
+      font-weight: 700;
+      border-radius: 3px;
+
+      color: #fff;
+
+      &:hover {
+        background-color: #dfccca;
+        // shade that is a bit darker than the button
+        color: #000;
+      }
+    }
+  }
+  .formDiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    label {
+      font-size: 1.3rem;
+      color: #c99b95;
+    }
   }
 `;
 export const ImageContainer = styled.div`

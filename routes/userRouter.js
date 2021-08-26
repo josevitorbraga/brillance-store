@@ -45,4 +45,8 @@ userRouter.post("/signin", async (req, res) => {
   });
 });
 
+userRouter.get("/check", isAuth, (req, res) => {
+  res.json({ message: "User authenticated" });
+});
+
 export default userRouter;
