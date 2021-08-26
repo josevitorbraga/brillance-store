@@ -7,6 +7,12 @@ import dotenv from "dotenv";
 import routes from "./routes/index.js";
 dotenv.config();
 
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const db = process.env.MONGO_DB;
 const port = process.env.PORT;
 
@@ -17,6 +23,11 @@ app.use(express.json());
 app.use(express.static("tmp"));
 app.use(cookies());
 app.use(routes);
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 const run = async () => {
   await mongoose
