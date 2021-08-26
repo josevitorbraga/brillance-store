@@ -18,7 +18,7 @@ export default function ProductCard(props) {
       {props.editMode === true ? (
         <Container>
           <img
-            src={`/${props.productData.image}`}
+            src={`https://brillance-store.s3.sa-east-1.amazonaws.com/${props.productData.image}`}
             alt="produto"
             onClick={() => handleGoToEditProduct(props.productData._id)}
           />
@@ -34,7 +34,7 @@ export default function ProductCard(props) {
       ) : (
         <Container>
           <img
-            src={`/${props.productData.image}`}
+            src={`https://brillance-store.s3.sa-east-1.amazonaws.com/${props.productData.image}`}
             alt="produto"
             onClick={() => handleGoToProduct(props.productData._id)}
           />

@@ -1,6 +1,4 @@
 import jwt from "jsonwebtoken";
-import fs from "fs";
-import path from "path";
 
 import Product from "../models/ProductsSchema.js";
 
@@ -33,21 +31,12 @@ export const isAuth = (request, response, next) => {
 };
 
 export const updateImage = async ({ product_id, imageFileName }) => {
+  console.log(imageFileName);
+
   const product = await Product.findById(product_id);
 
   if (!product) {
     throw new Error("This product does not exists...");
-  }
-  if (product.image && product.image !== "defaultImg.jpg") {
-    const productImageFilePath = path.join(
-      uploadConfig.directory,
-      product.image
-    );
-    const productImageFileExists = await fs.promises.stat(productImageFilePath);
-
-    if (productImageFileExists) {
-      await fs.promises.unlink(productImageFilePath);
-    }
   }
   product.image = imageFileName;
   await Product.findOneAndUpdate({ _id: product_id }, product);

@@ -42,7 +42,10 @@ export default function ProductPage(props) {
       </Header>
       <Container>
         <ImageContainer>
-          <img src={`/${product.image}`} alt={`/${product.image}`} />
+          <img
+            src={`https://brillance-store.s3.sa-east-1.amazonaws.com/${product.image}`}
+            alt={`/${product.image}`}
+          />
         </ImageContainer>
         <Data>
           <h1>{product.name}</h1>

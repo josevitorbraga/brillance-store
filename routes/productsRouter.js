@@ -2,11 +2,10 @@ import { Router } from "express";
 import multer from "multer";
 
 import Product from "../models/ProductsSchema.js";
-import uploadConfig from "../config/upload.js";
+import upload from "../config/upload.js";
 import { isAuth, updateImage } from "../utils/utils.js";
 
 const productsRouter = Router();
-const upload = multer(uploadConfig);
 
 // GET ALL PRODUCTS
 productsRouter.get("/", async (req, res) => {
@@ -53,7 +52,7 @@ productsRouter.put("/edit/:id", isAuth, async (req, res) => {
 
 productsRouter.patch(
   "/:id/image",
-  isAuth,
+  //isAuth,
   upload.single("image"),
   async (request, response) => {
     try {
@@ -61,7 +60,7 @@ productsRouter.patch(
 
       const product = await updateImage({
         product_id: id,
-        imageFileName: request.file.filename,
+        imageFileName: request.file.key,
       });
 
       return response.send(product.image);
