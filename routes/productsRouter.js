@@ -88,4 +88,12 @@ productsRouter.post("/", isAuth, (req, res) => {
   });
 });
 
+// DELETE A PRODUCT
+productsRouter.delete("/:id", isAuth, async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+  await product.remove();
+  res.json({ message: "Product deleted" });
+});
+
 export default productsRouter;

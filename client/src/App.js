@@ -16,6 +16,10 @@ import CreateProductPage from "./pages/CreateProductPage/CreateProductPage";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
 import CartProvider from "./context/CartContext";
 import CartPage from "./pages/CartPage/CartPage";
+import CartQuantityBadge from "./components/CartQuantityBadge/CartQuantityBadge";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 export default function App() {
   const ref = useRef();
@@ -38,6 +42,7 @@ export default function App() {
               <div className="cart">
                 <Link to="/cart">
                   <BiCartAlt size={30} /> <h2> Carrinho</h2>
+                  <CartQuantityBadge />
                 </Link>
               </div>
             </div>
@@ -58,6 +63,7 @@ export default function App() {
             <Route path="/admin/login" component={LoginPage} exact />
             <Route path="/" component={HomePage} exact />
           </Switch>
+          <ToastContainer />
         </main>
       </BrowserRouter>
     </CartProvider>

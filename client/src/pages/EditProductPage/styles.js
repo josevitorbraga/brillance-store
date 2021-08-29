@@ -31,7 +31,7 @@ export const Data = styled.div`
     button {
       padding: 1rem;
       margin-top: 2rem;
-      background-color: #c99b95;
+      background-color: #4bb543;
 
       font-weight: 700;
       border-radius: 3px;
@@ -39,7 +39,7 @@ export const Data = styled.div`
       color: #fff;
 
       &:hover {
-        background-color: #dfccca;
+        background-color: #81e67a;
         // shade that is a bit darker than the button
         color: #000;
       }
@@ -53,6 +53,28 @@ export const Data = styled.div`
     label {
       font-size: 1.3rem;
       color: #c99b95;
+    }
+  }
+
+  .deleteProduct {
+    display: flex;
+    width: 100%;
+    button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: #d24858;
+
+      font-weight: 700;
+      border-radius: 3px;
+
+      color: #fff;
+
+      &:hover {
+        background-color: #ea8676;
+        // shade that is a bit darker than the button
+        color: #000;
+      }
     }
   }
 `;

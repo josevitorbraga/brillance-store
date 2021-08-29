@@ -15,7 +15,13 @@ export default function SliderCarrousel() {
   };
   return (
     <>
-      <Slider dots arrows={false} autoplay={true} autoplaySpeed={4000}>
+      <Slider
+        dots
+        arrows={false}
+        autoplay={true}
+        autoplaySpeed={4000}
+        adaptiveHeight={true}
+      >
         <div className="videoBanner" onClick={handleClickColares}>
           <video id="test" autoPlay loop>
             <source src={video1} type="video/mp4" />

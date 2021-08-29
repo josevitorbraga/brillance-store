@@ -19,11 +19,6 @@ export const ScrolledHeader = styled.div`
         ? ""
         : "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));"};
 
-    h1 {
-      margin-top: 0;
-      margin-right: ${props => (props.isOnTop === true ? 0 : "8rem")};
-    }
-
     img {
       display: ${props => (props.isOnTop === true ? "none" : "")};
       position: ${props => (props.isOnTop === true ? "none" : "relative")};
@@ -39,12 +34,34 @@ export const ScrolledHeader = styled.div`
         display: flex;
         align-items: center;
         text-decoration: none;
-        &:hover h2 {
-          font-weight: 500;
-        }
         h2 {
           margin: 0;
           font-weight: 300;
+        }
+      }
+    }
+  }
+  @media (max-width: 414px) {
+    .contentHeader {
+      padding: 1em 1em 0 1em;
+
+      h2 {
+        font-size: 1em;
+      }
+
+      img {
+        width: 12em;
+      }
+      .cart {
+        a {
+          margin-bottom: 10px;
+          color: #f8f8f8;
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+        }
+        svg {
+          height: 1em;
         }
       }
     }

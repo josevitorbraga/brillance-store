@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { isAuth } from "../utils/utils.js";
 
-const adminRouter = Router();
+const orderRouter = Router();
 
-adminRouter.get("/home", isAuth, (req, res) => {
+orderRouter.get("/home", isAuth, (req, res) => {
   res.status(200).send("OK");
 });
 
-export default adminRouter;
+export default orderRouter;

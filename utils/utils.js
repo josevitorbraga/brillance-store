@@ -23,7 +23,6 @@ export const isAuth = (request, response, next) => {
         return response.status(401).send({ message: "invalid token" });
       }
       request.user = decode;
-      console.log("passed");
       return next();
     });
   }

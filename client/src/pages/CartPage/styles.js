@@ -4,10 +4,14 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  @media (max-width: 414px) {
+    flex-direction: column;
+  }
 `;
 
 export const OrderContainer = styled.div`
-  width: 40%;
+  width: 55%;
 
   & div + div {
     margin-top: 10px;
@@ -24,6 +28,15 @@ export const OrderItem = styled.div`
 
   .orderInfo {
     display: flex;
+    .productImage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      img {
+        height: 55px;
+        width: 50px;
+      }
+    }
   }
   .quantityButton {
     display: flex;
@@ -67,6 +80,22 @@ export const OrderItem = styled.div`
   & div + div {
     margin-left: 4rem;
   }
+
+  @media (max-width: 414px) {
+    width: 96vw;
+
+    .productPrice {
+      display: none;
+    }
+
+    .orderActions {
+      margin: 0;
+    }
+
+    & div + div {
+      margin-left: 1.5em;
+    }
+  }
 `;
 
 export const OrderDetails = styled.div`
@@ -109,6 +138,11 @@ export const OrderDetails = styled.div`
     border-radius: 4px;
     letter-spacing: 3px;
   }
+
+  @media (max-width: 414px) {
+    width: 100%;
+    margin: 2em 0;
+  }
 `;
 
 export const Header = styled.div`
@@ -140,5 +174,24 @@ export const Header = styled.div`
     border-bottom: 1px solid #dfccca;
     padding: 0 8rem;
     color: #595757;
+  }
+
+  @media (max-width: 414px) {
+    margin: 1em 2em 3em 2em;
+
+    .spacing {
+      width: 127px;
+    }
+
+    a {
+      font-size: 0.8em;
+    }
+
+    span {
+      font-size: 1.5rem;
+      border-bottom: 1px solid #dfccca;
+      padding: 0 1.3em;
+      color: #595757;
+    }
   }
 `;

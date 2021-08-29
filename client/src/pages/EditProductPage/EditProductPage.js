@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Container, Data, ImageContainer, Header } from "./styles";
-import { BiArrowBack, BiCartAlt } from "react-icons/bi";
+import { BiArrowBack } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
 
 export default function EditProductPage(props) {
@@ -47,14 +47,13 @@ export default function EditProductPage(props) {
           <BiArrowBack />
           Voltar ao catálogo
         </Link>
-        <Link to="/cart">
-          Ir ao carrinho
-          <BiCartAlt />
-        </Link>
       </Header>
       <Container>
         <ImageContainer>
-          <img src={`/${image}`} alt={`/${image}`} />
+          <img
+            src={`https://brillance-store.s3.sa-east-1.amazonaws.com/${image}`}
+            alt={`/${image}`}
+          />
         </ImageContainer>
         <Data>
           <form onSubmit={handleChangeProduct}>
@@ -84,8 +83,11 @@ export default function EditProductPage(props) {
                 onChange={e => setPrice(e.target.value)}
               />
             </div>
-            <button type="submit">Alterar Produto</button>
+            <button type="submit">Confirmar alteração</button>
           </form>
+          <div className="deleteProduct">
+            <button>Deletar produto</button>
+          </div>
         </Data>
       </Container>
     </>

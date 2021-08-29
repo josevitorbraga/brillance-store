@@ -1,14 +1,22 @@
 import styled from "styled-components";
 
 export const SideMenuWrapper = styled.div`
-  width: 15%;
+  width: 13%;
   position: fixed;
+  padding-left: 10px;
+  left: 0;
 
   display: flex;
   flex-direction: column;
+  bottom: 8.3rem;
 
+  border-radius: 0 10px 10px 0;
+
+  z-index: 1;
+
+  background-color: #fbfbfb;
   .wrapper {
-    margin-top: 3rem;
+    margin-top: 1rem;
     .interactiveMenu {
       margin-bottom: 1rem;
       a {
@@ -53,6 +61,10 @@ export const SideMenuWrapper = styled.div`
   }
   && svg + svg {
     margin-top: 0.5rem;
+  }
+
+  @media (max-width: 414px) {
+    display: none;
   }
 `;
 

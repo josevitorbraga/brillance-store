@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 
 import { IoBagCheck, IoClose } from "react-icons/io5";
@@ -14,6 +14,21 @@ import { Link } from "react-router-dom";
 
 export default function CartPage() {
   const { cart, removeItem, addToCart, removeProductUnit } = useCartContext();
+  const [encodedCart, setEncodedCart] = useState("");
+
+  const handleMakeOrder = async () => {
+    // REVIEW THIS
+    window.location.replace(
+      `https://api.whatsapp.com/send/?phone=5511964870728&text=${encodedCart}`
+    );
+  };
+
+  useEffect(() => {
+    const order = cart.products.map(product => {
+      return `${product.name} - ${product.quantity}x unidades,%0A`;
+    });
+    setEncodedCart(order);
+  }, [cart]);
 
   return (
     <>
@@ -37,7 +52,10 @@ export default function CartPage() {
               <OrderItem key={item._id}>
                 <div className="orderInfo">
                   <div className="productImage">
-                    <img src={item.image} alt="miniature" />
+                    <img
+                      src={`https://brillance-store.s3.sa-east-1.amazonaws.com/${item.image}`}
+                      alt="miniature"
+                    />
                   </div>
                   <div className="productName">
                     <label>Name</label>
@@ -75,7 +93,7 @@ export default function CartPage() {
             Ao finalizar o pedido o redirecionaremos para um atendente que
             ficará encarregado de colher todos os dados do seu pedido.
           </p>
-          <button>
+          <button onClick={() => handleMakeOrder()}>
             Finalizar <IoBagCheck />
           </button>
         </OrderDetails>

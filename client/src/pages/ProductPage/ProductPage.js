@@ -3,21 +3,31 @@ import axios from "axios";
 
 import { Container, Data, ImageContainer, Header } from "./styles";
 import { BiArrowBack, BiCartAlt } from "react-icons/bi";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useCartContext } from "../../context/CartContext";
+import { toast } from "react-toastify";
 
 export default function ProductPage(props) {
   const productId = props.match.params.productId;
-  const history = useHistory();
 
   const [product, setProduct] = useState({});
+  const [counter, setCounter] = useState(0);
 
   const { addToCart } = useCartContext();
 
   const handleAddToCart = () => {
     addToCart(product);
-    history.replace("/cart");
+    setCounter(counter + 1);
+    toast.success("Produto adicionado ao carrinho!", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   useEffect(() => {
@@ -36,8 +46,16 @@ export default function ProductPage(props) {
           Voltar ao catálogo
         </Link>
         <Link to="/cart">
-          Ir ao carrinho
-          <BiCartAlt />
+          {counter > 0 ? (
+            <div>
+              Ir ao carrinho <BiCartAlt />
+              <span>{`+${counter}`}</span>
+            </div>
+          ) : (
+            <div>
+              Ir ao carrinho <BiCartAlt />
+            </div>
+          )}
         </Link>
       </Header>
       <Container>

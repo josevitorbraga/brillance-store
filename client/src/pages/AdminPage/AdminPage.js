@@ -20,7 +20,8 @@ export default function AdminPage() {
       }
     }
     getAdminPermission();
-  }, []);
+  }, [productList]);
+
   return (
     <div>
       {isAuth ? (

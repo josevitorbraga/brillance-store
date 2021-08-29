@@ -2,19 +2,24 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Container, Content } from "./styles";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const history = useHistory();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+
   const submitHandler = async e => {
     e.preventDefault();
     const response = await axios.post("/users/signin", {
       user: user,
       password: password,
     });
+    console.log(response);
     if (response.status === 200) {
       history.replace("/admin/home");
+    } else {
+      toast.error("Falha ao logar");
     }
   };
 
@@ -23,8 +28,8 @@ export default function LoginPage() {
       const response = await axios.get("/users/check");
       if (response.status === 200) {
         history.replace("/admin/home");
-      } else {
-        console.log(response.data);
+      } else if (response.status === 401) {
+        toast.error(response.data.message);
       }
     };
     checkIsAlreadyLoggedIn();

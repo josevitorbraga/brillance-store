@@ -23,5 +23,8 @@ export const MainContent = styled.div`
     margin-right: 6rem;
     margin-left: 16rem;
     padding-left: 0.2rem;
+    img {
+      height: 215px;
+    }
   }
 `;

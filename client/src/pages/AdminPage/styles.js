@@ -20,10 +20,16 @@ export const Container = styled.div`
   .info {
     font-weight: 300;
     font-size: 2rem;
-    color: #c99b95;
+    background-color: #c99b95;
+    color: #fff;
 
-    margin: 2rem 0;
+    padding: 2rem 0;
     border-bottom: 1px solid #eaecef;
+
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 2rem;
   }
 
   .header {
@@ -55,7 +61,12 @@ export const ProductGrid = styled.div`
   flex-wrap: wrap;
   border: solid 1px #e2e2e2;
   align-content: flex-start;
+  justify-content: center;
 
   margin: 2rem 6rem;
   padding-left: 0.2rem;
+
+  img {
+    height: 190px;
+  }
 `;

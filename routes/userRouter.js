@@ -40,7 +40,7 @@ userRouter.post("/signin", async (req, res) => {
       });
     }
   }
-  return res.status(401).json({
+  return res.json({
     message: "A combinação de usuário e senha deve coicindir",
   });
 });
