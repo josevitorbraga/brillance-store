@@ -5,22 +5,32 @@ export const Container = styled.div`
 `;
 
 export const MainContent = styled.div`
-  width: 100%;
-  text-align: right;
+  flex: 1;
+  text-align: center;
+  margin: 1em 5em;
+
+  > h1 {
+    font-weight: 300;
+    border-bottom: 1px solid #e2e2e2;
+  }
 
   .products-grid {
     display: flex;
     flex-wrap: wrap;
-    border: solid 1px #e2e2e2;
+    //border: solid 1px #e2e2e2;
+    border-radius: 1em;
+    background-color: #fbfbfb;
+    filter: drop-shadow(5px 15px 15px #c99b95);
+
     align-content: center;
     justify-content: center;
 
-    margin-right: 6rem;
-    margin-left: 16rem;
-    padding-left: 0.2rem;
+    padding-top: 2em;
   }
 
-  @media (max-width: 414px) {
+  @media (max-width: 800px) {
+    margin: 0;
+
     .products-grid {
       margin-right: 0;
       margin-left: 0;

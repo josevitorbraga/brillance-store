@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 14rem;
-  height: 20rem;
+  height: 23em;
 
   margin: 0.5rem;
 
@@ -13,7 +13,7 @@ export const Container = styled.div`
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
 
-    height: 165px;
+    height: 14em;
     width: 100%;
 
     &:hover {
@@ -47,7 +47,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 414px) {
+  @media (max-width: 800px) {
     width: 10em;
     height: 17em;
 

@@ -1,73 +1,79 @@
 import styled from "styled-components";
 
 export const SideMenuWrapper = styled.div`
-  width: 13%;
-  position: fixed;
-  padding-left: 10px;
-  left: 0;
-
   display: flex;
-  flex-direction: column;
-  bottom: 8.3rem;
 
-  border-radius: 0 10px 10px 0;
+  position: fixed;
+  left: 0;
+  bottom: 8em;
 
   z-index: 1;
 
-  background-color: #fbfbfb;
-  .wrapper {
-    margin-top: 1rem;
-    .interactiveMenu {
-      margin-bottom: 1rem;
+  border: 1px solid #d8c3c3;
+  border-left: 0;
+  border-radius: 0 1em 1em 0;
+  filter: drop-shadow(5px 15px 15px #bfbfbf);
+
+  transition: transform 0.7s ease;
+  transform: ${props =>
+    !props.isOpen ? "translateX(-75%)" : "translateX(0%)"};
+
+  .hiddenMenu {
+    padding: 1em;
+    transition: width 0.7s;
+
+    overflow: hidden;
+
+    background-color: #f8f8f8;
+
+    .secondMenu {
       a {
         display: flex;
         align-items: center;
 
         text-decoration: none;
 
-        color: #c99b95;
-        &:hover span {
-          max-width: 100%;
-        }
+        color: #b09e9e;
       }
-
       span {
         width: auto;
-        max-width: 0%;
+        max-width: ${props => (!props.isOpen ? "0" : "100%")};
         white-space: nowrap;
         overflow: hidden;
-        transition: max-width 0.5s linear;
+        transition: max-width 2s linear;
       }
     }
   }
 
-  ul {
-    padding: 0;
-  }
+  .toggleMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-  ul li a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
-    font-size: 1.3rem;
-  }
+    padding: 1em;
 
-  ul li a:hover {
+    background-color: #a5bf78;
+    border-radius: 0 1em 1em 0;
+
+    color: #f8f8f8;
     font-weight: 700;
-  }
-
-  && li + li {
-    margin-top: 0.5rem;
-  }
-  && svg + svg {
-    margin-top: 0.5rem;
-  }
-
-  @media (max-width: 414px) {
-    display: none;
   }
 `;
 
 export const SideMenuList = styled.ul`
   list-style: none;
+  padding: 0;
+
+  margin-bottom: 2em;
+
+  li {
+    padding: 0.3em;
+
+    a {
+      color: #000;
+      text-decoration: none;
+      font-size: 1.3em;
+    }
+  }
 `;

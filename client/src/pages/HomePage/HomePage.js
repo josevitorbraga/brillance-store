@@ -23,6 +23,7 @@ export default function HomePage() {
       <Container>
         <SideMenu />
         <MainContent>
+          <h1>Home</h1>
           <div className="products-grid">
             {products.map(item => (
               <ProductCard key={item._id} productData={item} />

@@ -3,7 +3,9 @@
 }
 body {
   font-family: 'Barlow', sans-serif;
-  background-color: #fbfbfb;
+  background-image: url("./assets/background.svg");
+  background-size: cover;
+  background-attachment: fixed;
   zoom: unset;
 
 }
@@ -40,7 +42,7 @@ main {
   margin-bottom: 5rem;
 }
 
-main .videoBanner{
+main .bannerSlider{
   cursor: pointer;
 }
 
@@ -57,7 +59,8 @@ footer{
   background-color: #dfccca;
   color: #595757;
 }
-.sliderContent img{
+.bannerSlider img{
+  height: 10em;
   width: 100%;
 }
 

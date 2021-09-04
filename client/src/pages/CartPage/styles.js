@@ -5,8 +5,9 @@ export const Container = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 
-  @media (max-width: 414px) {
+  @media (max-width: 800px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -15,6 +16,12 @@ export const OrderContainer = styled.div`
 
   & div + div {
     margin-top: 10px;
+  }
+
+  @media (max-width: 800px) {
+    .productPrice {
+      display: none;
+    }
   }
 `;
 
@@ -132,15 +139,17 @@ export const OrderDetails = styled.div`
 
   button {
     padding: 1rem;
-    background-color: #4bb543;
+    background-color: #a5bf78;
     color: #fff;
     font-weight: 700;
     border-radius: 4px;
     letter-spacing: 3px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2), inset 0 -4px 0 #a5bf78,
+      inset 0 3px 0 #cee6a5;
   }
 
-  @media (max-width: 414px) {
-    width: 100%;
+  @media (max-width: 800px) {
+    width: 60%;
     margin: 2em 0;
   }
 `;
@@ -176,7 +185,7 @@ export const Header = styled.div`
     color: #595757;
   }
 
-  @media (max-width: 414px) {
+  @media (max-width: 800px) {
     margin: 1em 2em 3em 2em;
 
     .spacing {
