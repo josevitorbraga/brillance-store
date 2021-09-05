@@ -1,5 +1,4 @@
 import { Router } from "express";
-import multer from "multer";
 
 import Product from "../models/ProductsSchema.js";
 import upload from "../config/upload.js";
@@ -9,16 +8,16 @@ const productsRouter = Router();
 
 // GET ALL PRODUCTS
 productsRouter.get("/", async (req, res) => {
-  const name = req.query.name || "";
-  const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
-  const products = await Product.find({ ...nameFilter });
+  const title = req.query.title || "";
+  const titleFilter = title ? { title: { $regex: title, $options: "i" } } : {};
+  const products = await Product.find({ ...titleFilter });
   res.json(products);
 });
 
 productsRouter.get("/auth", isAuth, async (req, res) => {
-  const name = req.query.name || "";
-  const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
-  const products = await Product.find({ ...nameFilter });
+  const title = req.query.title || "";
+  const titleFilter = title ? { title: { $regex: title, $options: "i" } } : {};
+  const products = await Product.find({ ...titleFilter });
   res.json(products);
 });
 
@@ -26,7 +25,7 @@ productsRouter.get("/auth", isAuth, async (req, res) => {
 productsRouter.get("/category/:category", async (req, res) => {
   const { category } = req.params;
   const products = await Product.find({
-    category: { $eq: category },
+    category_id: { $eq: category },
   });
   res.json(products);
 });
@@ -42,10 +41,10 @@ productsRouter.get("/:id", async (req, res) => {
 productsRouter.put("/edit/:id", isAuth, async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
-  const { name, description, price } = req.body;
-  product.name = name;
+  const { title, description, unit_price } = req.body;
+  product.title = title;
   product.description = description;
-  product.price = price;
+  product.unit_price = unit_price;
   await product.save();
   res.status(200).json(product);
 });
@@ -72,12 +71,12 @@ productsRouter.patch(
 
 // CREATE A NEW PRODUCT
 productsRouter.post("/", isAuth, (req, res) => {
-  const { name, description, price, category } = req.body;
+  const { title, description, unit_price, category_id } = req.body;
   const newProduct = new Product({
-    name,
+    title,
     description,
-    price,
-    category,
+    unit_price,
+    category_id,
   });
   newProduct.save(err => {
     if (err) {
