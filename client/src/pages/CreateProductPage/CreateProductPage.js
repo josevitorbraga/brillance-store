@@ -24,9 +24,9 @@ export default function CreateProductPage() {
   const handleCreateProduct = async e => {
     e.preventDefault();
     const response = await axios.post("/products", {
-      name: name,
+      title: name,
       description: description,
-      price: Number(price),
+      unit_price: Number(price),
       category: category,
     });
     setCreatedProductId(response.data);
