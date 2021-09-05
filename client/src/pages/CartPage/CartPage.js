@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useCartContext } from "../../context/CartContext";
 
 import { IoBagCheck, IoClose } from "react-icons/io5";
@@ -10,25 +10,16 @@ import {
   OrderItem,
   Header,
 } from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function CartPage() {
   const { cart, removeItem, addToCart, removeProductUnit } = useCartContext();
-  const [encodedCart, setEncodedCart] = useState("");
 
-  const handleMakeOrder = async () => {
-    // REVIEW THIS
-    window.location.replace(
-      `https://api.whatsapp.com/send/?phone=5511964870728&text=${encodedCart}`
-    );
+  const history = useHistory();
+
+  const handleMakeOrder = () => {
+    history.push(`/novopedido`);
   };
-
-  useEffect(() => {
-    const order = cart.products.map(product => {
-      return `${product.name} - ${product.quantity}x unidades,%0A`;
-    });
-    setEncodedCart(order);
-  }, [cart]);
 
   return (
     <>

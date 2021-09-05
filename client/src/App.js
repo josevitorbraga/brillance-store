@@ -20,6 +20,7 @@ import CartQuantityBadge from "./components/CartQuantityBadge/CartQuantityBadge"
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import PlaceOrderPage from "./pages/PlaceOrderPage/PlaceOrderPage";
 
 export default function App() {
   const ref = useRef();
@@ -51,6 +52,7 @@ export default function App() {
 
         <main>
           <Switch>
+            <Route path="/novopedido" component={PlaceOrderPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/admin/product/create" component={CreateProductPage} />
             <Route

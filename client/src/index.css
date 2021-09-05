@@ -64,7 +64,7 @@ footer{
   width: 100%;
 }
 
-@media (max-width: 414px) {
+@media (max-width: 800px) {
 
   
   header .header{
@@ -78,9 +78,6 @@ footer{
     height: 60px;
   }
   
-  main .videoBanner{
-    display: none;
-  }
   
   footer{
     position: fixed;
@@ -95,7 +92,7 @@ footer{
     background-color: #dfccca;
     color: #595757;
   }
-  .sliderContent img{
-    display: none;
+  .bannerSlider img{
+    height: 5em;
   }
 }

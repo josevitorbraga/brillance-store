@@ -17,6 +17,9 @@ export const Container = styled.div`
     input {
       padding: 0.3rem;
     }
+    textarea {
+      white-space: pre-wrap;
+    }
     label {
       margin-top: 1rem;
     }

@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import cookies from "cookie-parser";
 import dotenv from "dotenv";
+import mercadopago from "mercadopago";
 
 import routes from "./routes/index.js";
 dotenv.config();
@@ -24,6 +25,10 @@ app.use(express.static("tmp"));
 app.use(cookies());
 app.use(routes);
 app.use(express.static(path.join(__dirname, "client", "build")));
+
+mercadopago.configure({
+  access_token: process.env.MP_ACCESS_TOKEN,
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
