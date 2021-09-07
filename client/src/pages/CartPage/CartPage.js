@@ -51,7 +51,7 @@ export default function CartPage() {
                   <div className="productName">
                     <label>Name</label>
 
-                    <p>{item.name}</p>
+                    <p>{item.title}</p>
                   </div>
                   <div className="itemQuantity">
                     <label>Quantidade</label>
@@ -63,7 +63,7 @@ export default function CartPage() {
                   </div>
                   <div className="productPrice">
                     <label>Total</label>
-                    <p>R$ {item.price * item.quantity}</p>
+                    <p>R$ {item.unit_price * item.quantity}</p>
                   </div>
                 </div>
                 <div className="orderActions">

@@ -58,7 +58,7 @@ export default function PlaceOrderPage() {
       address: `${address}, ${number}, ${city}, ${state}, ${cep}`,
     });
 
-    console.log(response.data);
+    window.location.replace(response.data);
   };
 
   useEffect(() => {

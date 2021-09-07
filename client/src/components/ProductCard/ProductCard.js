@@ -35,8 +35,8 @@ export default function ProductCard(props) {
             onClick={() => handleGoToEditProduct(props.productData._id)}
           />
           <div className="card-body">
-            <h3>{props.productData.name}</h3>
-            R$ {props.productData.price}
+            <h3>{props.productData.title}</h3>
+            R$ {props.productData.unit_price}
           </div>
           <div className="productActions">
             <Link
@@ -61,8 +61,8 @@ export default function ProductCard(props) {
             onClick={() => handleGoToProduct(props.productData._id)}
           />
           <Link to={`/produto/${props.productData._id}`} className="card-body">
-            <h3>{props.productData.name}</h3>
-            R$ {props.productData.price}
+            <h3>{props.productData.title}</h3>
+            R$ {props.productData.unit_price}
           </Link>
         </Container>
       )}

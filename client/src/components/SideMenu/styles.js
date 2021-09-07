@@ -16,7 +16,7 @@ export const SideMenuWrapper = styled.div`
 
   transition: transform 0.7s ease;
   transform: ${props =>
-    !props.isOpen ? "translateX(-75%)" : "translateX(0%)"};
+    !props.isopen ? "translateX(-75%)" : "translateX(0%)"};
 
   .hiddenMenu {
     padding: 1em;
@@ -37,7 +37,7 @@ export const SideMenuWrapper = styled.div`
       }
       span {
         width: auto;
-        max-width: ${props => (!props.isOpen ? "0" : "100%")};
+        max-width: ${props => (!props.isopen ? "0" : "100%")};
         white-space: nowrap;
         overflow: hidden;
         transition: max-width 2s linear;

@@ -28,12 +28,12 @@ export default function CartProvider({ children }) {
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
-        total: Number(cart.total) + Number(product.price),
+        total: Number(cart.total) + Number(product.unit_price),
       });
     } else {
       setCart({
         products: [...cart.products, { ...product, quantity: 1 }],
-        total: Number(cart.total) + Number(product.price),
+        total: Number(cart.total) + Number(product.unit_price),
       });
     }
   };
@@ -55,7 +55,7 @@ export default function CartProvider({ children }) {
             : item
         ),
 
-        total: Number(cart.total) - Number(product.price),
+        total: Number(cart.total) - Number(product.unit_price),
       });
     }
   };
@@ -67,7 +67,7 @@ export default function CartProvider({ children }) {
       products: newCart,
       total:
         cart.total -
-        cart.products.find(product => product._id === id).price *
+        cart.products.find(product => product._id === id).unit_price *
           cart.products.find(product => product._id === id).quantity,
     });
     localStorage.setItem("cart", JSON.stringify(cart));

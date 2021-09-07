@@ -66,9 +66,9 @@ export default function ProductPage(props) {
           />
         </ImageContainer>
         <Data>
-          <h1>{product.name}</h1>
+          <h1>{product.title}</h1>
           <p>{product.description}</p>
-          <h2>R$ {product.price}</h2>
+          <h2>R$ {product.unit_price}</h2>
           <button onClick={() => handleAddToCart()}>
             Adicionar ao carrinho
           </button>

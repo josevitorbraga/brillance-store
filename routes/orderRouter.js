@@ -20,8 +20,8 @@ orderRouter.post("/create/new", (req, res) => {
 
   const preference = {
     back_urls: {
-      failure: `http://localhost:3333/payment/fail`,
-      success: `http://localhost:3333/payment/success/${newOrder._id}`,
+      failure: `http://localhost:3000/`,
+      success: `http://localhost:3000/payment/success/${newOrder._id}`,
     },
     items: productsList,
   };

@@ -24,7 +24,7 @@ export default function SideMenu() {
   }, []);
 
   return (
-    <SideMenuWrapper onClick={() => handleMenu()} isOpen={isOpen}>
+    <SideMenuWrapper onClick={() => handleMenu()} isopen={isOpen}>
       <div className="hiddenMenu">
         <SideMenuList>
           <li>
@@ -46,12 +46,12 @@ export default function SideMenu() {
         <div className="secondMenu">
           <Link to="/cart">
             <BiCartAlt />
-            <span isOpen={isOpen}>Carinho</span> <CartQuantityBadge />
+            <span isopen={isOpen}>Carinho</span> <CartQuantityBadge />
           </Link>
           <br />
           <a href="https://instagram.com/brillance.store">
             <BiHeart />
-            <span isOpen={isOpen}>Like</span>
+            <span isopen={isOpen}>Like</span>
           </a>
         </div>
       </div>

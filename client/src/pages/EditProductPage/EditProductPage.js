@@ -19,9 +19,9 @@ export default function EditProductPage(props) {
     e.preventDefault();
 
     const response = await axios.put(`/products/edit/${productId}`, {
-      name: name,
+      title: name,
       description: description,
-      price: price,
+      unit_price: price,
     });
 
     if (response.status === 200) {
@@ -32,9 +32,9 @@ export default function EditProductPage(props) {
   useEffect(() => {
     async function getProduct() {
       const response = await axios.get(`/products/${productId}`);
-      setName(response.data.name);
+      setName(response.data.title);
       setDescription(response.data.description);
-      setPrice(response.data.price);
+      setPrice(response.data.unit_price);
       setImage(response.data.image);
     }
     getProduct();
