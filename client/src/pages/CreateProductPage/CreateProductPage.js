@@ -27,7 +27,7 @@ export default function CreateProductPage() {
       title: name,
       description: description,
       unit_price: Number(price),
-      category: category,
+      category_id: category,
     });
     setCreatedProductId(response.data);
     setNextPhase(true);
