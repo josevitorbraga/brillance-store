@@ -58,6 +58,8 @@ export default function PlaceOrderPage() {
       address: `${address}, ${number}, ${city}, ${state}, ${cep}`,
     });
 
+    localStorage.removeItem("cart");
+
     window.location.replace(response.data);
   };
 

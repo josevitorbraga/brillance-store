@@ -20,7 +20,23 @@ const s3 = new aws.S3({
   secretAccessKey: secretAccessKey,
 });
 
-const upload = multer({
+export const deleteFromS3 = filename => {
+  s3.deleteObject(
+    {
+      Bucket: bucketName,
+      Key: filename,
+    },
+    function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("File successfuly deleted");
+      }
+    }
+  );
+};
+
+export const upload = multer({
   storage: multerS3({
     s3,
     bucket: bucketName,
@@ -41,5 +57,3 @@ const upload = multer({
     },
   }),
 });
-
-export default upload;

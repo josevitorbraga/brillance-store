@@ -9,6 +9,7 @@ const productsSchema = new Schema({
   description: String,
   unit_price: Number,
   category_id: String,
+  stock: Number,
   currency_id: {
     type: String,
     default: "BRL",

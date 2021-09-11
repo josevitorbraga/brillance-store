@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import Product from "../models/ProductsSchema.js";
-import upload from "../config/upload.js";
+import { upload, deleteFromS3 } from "../config/upload.js";
 import { isAuth, updateImage } from "../utils/utils.js";
 
 const productsRouter = Router();
@@ -71,12 +71,13 @@ productsRouter.patch(
 
 // CREATE A NEW PRODUCT
 productsRouter.post("/", isAuth, (req, res) => {
-  const { title, description, unit_price, category_id } = req.body;
+  const { title, description, unit_price, category_id, stock } = req.body;
   const newProduct = new Product({
     title,
     description,
     unit_price,
     category_id,
+    stock,
   });
   newProduct.save(err => {
     if (err) {
@@ -91,6 +92,7 @@ productsRouter.post("/", isAuth, (req, res) => {
 productsRouter.delete("/:id", isAuth, async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
+  deleteFromS3(product.image);
   await product.remove();
   res.json({ message: "Product deleted" });
 });

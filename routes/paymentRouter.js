@@ -1,30 +1,38 @@
 import { Router } from "express";
-//import Order from '../models/OrderSchema'
+import Order from "../models/OrderSchema.js";
+import Product from "../models/ProductsSchema.js";
+import mercadopago from "mercadopago";
 
 const paymentRouter = Router();
 
-paymentRouter("/success", (req, res) => {
-  res.send("Sucess, order created.");
-});
-paymentRouter("/fail", (req, res) => {
-  res.send("Oops, something went wrong.");
+paymentRouter.get("/check/:orderId/:paymentId", async (req, res) => {
+  const { orderId, paymentId } = req.params;
+
+  mercadopago.payment
+    .get(paymentId)
+    .then(async response => {
+      if (response.body.status === "approved") {
+        await Order.findByIdAndUpdate(orderId, { isPaid: true });
+
+        res.send(true);
+      } else {
+        const orderToDelete = await Order.findById(orderId);
+
+        if (orderToDelete !== null) {
+          orderToDelete.productsList.forEach(async product => {
+            const backToStock = product.quantity;
+            const updatedStockProduct = await Product.findById(product._id);
+            updatedStockProduct.stock = updatedStockProduct.stock + backToStock;
+            updatedStockProduct.save();
+          });
+
+          orderToDelete.deleteOne();
+        }
+
+        res.send(false);
+      }
+    })
+    .catch(error => console.log(error));
 });
 
 export default paymentRouter;
-
-// const preference = {
-//   back_urls: {
-//     failure: `http://localhost:3333/payment/fail`,
-//     success: `http://localhost:3333/payment/success`,
-//   },
-//   items: productsList,
-// };
-
-// mercadopago.preferences
-//   .create(preference)
-//   .then(function (response) {
-//     return res.send(response.body.sandbox_init_point);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });

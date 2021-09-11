@@ -1,11 +1,19 @@
 import { Router } from "express";
 import Order from "../models/OrderSchema.js";
+import Product from "../models/ProductsSchema.js";
 import mercadopago from "mercadopago";
 
 const orderRouter = Router();
 
 orderRouter.post("/create/new", (req, res) => {
   const { name, email, contact, totalPrice, address, productsList } = req.body;
+
+  productsList.forEach(async product => {
+    const newStock = product.stock - product.quantity;
+    await Product.findByIdAndUpdate(product._id, {
+      stock: newStock,
+    });
+  });
 
   const newOrder = new Order({
     name,
@@ -20,9 +28,11 @@ orderRouter.post("/create/new", (req, res) => {
 
   const preference = {
     back_urls: {
-      failure: `http://localhost:3000/`,
-      success: `http://localhost:3000/payment/success/${newOrder._id}`,
+      failure: `http://localhost:3000/pagamento/${newOrder._id}/`,
+      success: `http://localhost:3000/pagamento/${newOrder._id}/`,
+      pending: `http://localhost:3000/pagamento/${newOrder._id}/`,
     },
+    auto_return: "approved",
     items: productsList,
   };
 

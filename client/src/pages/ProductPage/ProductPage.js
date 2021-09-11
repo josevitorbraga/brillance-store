@@ -17,17 +17,29 @@ export default function ProductPage(props) {
   const { addToCart } = useCartContext();
 
   const handleAddToCart = () => {
-    addToCart(product);
-    setCounter(counter + 1);
-    toast.success("Produto adicionado ao carrinho!", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    if (counter < product.stock) {
+      addToCart(product);
+      setCounter(counter + 1);
+      toast.success("Produto adicionado ao carrinho!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.warn("Produto atingiu o limite do estoque.", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   useEffect(() => {
@@ -69,9 +81,15 @@ export default function ProductPage(props) {
           <h1>{product.title}</h1>
           <p>{product.description}</p>
           <h2>R$ {product.unit_price}</h2>
-          <button onClick={() => handleAddToCart()}>
-            Adicionar ao carrinho
-          </button>
+          {product.stock >= 1 ? (
+            <button onClick={() => handleAddToCart()}>
+              Adicionar ao carrinho
+            </button>
+          ) : (
+            <div className="outOfStock">
+              Desculpe não temos mais o produto em estoque.
+            </div>
+          )}
         </Data>
       </Container>
     </>

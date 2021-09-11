@@ -21,6 +21,12 @@ export default function CartPage() {
     history.push(`/novopedido`);
   };
 
+  const handleIterateOnCart = product => {
+    if (product.quantity < product.stock) {
+      addToCart(product);
+    }
+  };
+
   return (
     <>
       <Header>
@@ -56,7 +62,9 @@ export default function CartPage() {
                   <div className="itemQuantity">
                     <label>Quantidade</label>
                     <div className="quantityButton">
-                      <button onClick={() => addToCart(item)}>+</button>
+                      <button onClick={() => handleIterateOnCart(item)}>
+                        +
+                      </button>
                       <input type="text" value={item.quantity} />
                       <button onClick={() => removeProductUnit(item)}>-</button>
                     </div>

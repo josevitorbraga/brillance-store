@@ -25,7 +25,13 @@ export default function CartProvider({ children }) {
       setCart({
         products: cart.products.map(item =>
           item._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? {
+                ...item,
+                quantity:
+                  item.quantity < item.stock
+                    ? item.quantity + 1
+                    : item.quantity,
+              }
             : item
         ),
         total: Number(cart.total) + Number(product.unit_price),

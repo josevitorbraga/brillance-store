@@ -9,6 +9,21 @@ export const MainContent = styled.div`
   text-align: center;
   margin: 1em 5em;
 
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loadingIcon {
+    svg {
+      animation: spin 1s linear infinite;
+    }
+  }
+
   > h1 {
     font-weight: 300;
     border-bottom: 1px solid #e2e2e2;

@@ -5,26 +5,50 @@ export const Container = styled.div`
 `;
 
 export const MainContent = styled.div`
-  width: 100%;
-  text-align: right;
+  flex: 1;
+  text-align: center;
+  margin: 1em 5em;
 
-  > h3 {
-    margin-right: 7rem;
-    font-weight: 700;
-    font-size: 1.4rem;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loadingIcon {
+    svg {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  > h1 {
+    font-weight: 300;
+    border-bottom: 1px solid #e2e2e2;
   }
 
   .products-grid {
     display: flex;
     flex-wrap: wrap;
-    border: solid 1px #e2e2e2;
-    align-content: flex-start;
+    border-radius: 1em;
+    background-color: #fbfbfb;
+    filter: drop-shadow(5px 15px 15px #c99b95);
 
-    margin-right: 6rem;
-    margin-left: 16rem;
-    padding-left: 0.2rem;
-    img {
-      height: 215px;
+    align-content: center;
+    justify-content: center;
+
+    padding-top: 2em;
+  }
+
+  @media (max-width: 800px) {
+    margin: 0;
+
+    .products-grid {
+      margin-right: 0;
+      margin-left: 0;
+      padding-left: 0;
     }
   }
 `;

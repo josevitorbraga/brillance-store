@@ -38,7 +38,7 @@ export const Container = styled.div`
 
   @media (max-width: 600px) {
     flex-wrap: wrap;
-    margin: 3em 0;
+    margin: 1.5em 0;
   }
 `;
 
@@ -54,7 +54,7 @@ export const Data = styled.div`
     background: #a5bf78;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5em 1em;
     border-radius: 5px;
     font-weight: 700;
     cursor: pointer;
@@ -66,19 +66,46 @@ export const Data = styled.div`
   }
 
   @media (max-width: 800px) {
+    background-color: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2em 3em;
+    margin: 0 1.3em;
+
+    filter: drop-shadow(5px 15px 15px #c99b95);
+    border-radius: 1em;
+
+    h1,
+    h2 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0.3em 0;
+    }
+
+    button {
+      margin-top: 1em;
+      filter: none;
+    }
   }
 `;
 
 export const ImageContainer = styled.div`
-  margin-right: 4rem;
+  margin-right: 4em;
   img {
-    height: 30rem;
+    height: 30em;
+    filter: drop-shadow(5px 15px 15px #c99b95);
+    flex: 1;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     margin-right: 0;
     img {
-      height: 30rem;
+      height: 20em;
+      //border-radius: 1em;
+      filter: drop-shadow(5px 15px 15px #c99b95);
     }
   }
 `;

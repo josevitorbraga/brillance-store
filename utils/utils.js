@@ -1,6 +1,15 @@
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 import Product from "../models/ProductsSchema.js";
+
+const transporter = nodemailer.createTransport({
+  service: "hotmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 export const generateToken = user => {
   return jwt.sign(
@@ -30,8 +39,6 @@ export const isAuth = (request, response, next) => {
 };
 
 export const updateImage = async ({ product_id, imageFileName }) => {
-  console.log(imageFileName);
-
   const product = await Product.findById(product_id);
 
   if (!product) {
@@ -41,4 +48,19 @@ export const updateImage = async ({ product_id, imageFileName }) => {
   await Product.findOneAndUpdate({ _id: product_id }, product);
 
   return product;
+};
+
+export const sendEmailOrderConfirmation = async emailData => {
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER, // sender address
+    to: emailData.email, // list of receivers
+    subject: `Pedido N° ${emailData._id} Realizado! - Brillance Store`, // Subject line
+    text: "Sua compra foi aprovada no nosso site, em breve enviaremos o código de rastreio dos seus produtinhos!!", // plain text body
+    html: `
+      <h1>Olá ${emailData.name},</h1>
+      <p>Sua compra foi aprovada no nosso site, em breve enviaremos o código de rastreio dos seus produtinhos!!</p>
+      
+    `, // html body
+  });
+  return;
 };

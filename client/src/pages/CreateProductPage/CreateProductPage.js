@@ -12,6 +12,7 @@ export default function CreateProductPage() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [stock, setStock] = useState("");
 
   const [createdProductId, setCreatedProductId] = useState("");
 
@@ -28,6 +29,7 @@ export default function CreateProductPage() {
       description: description,
       unit_price: Number(price),
       category_id: category,
+      stock: stock,
     });
     setCreatedProductId(response.data);
     setNextPhase(true);
@@ -96,6 +98,15 @@ export default function CreateProductPage() {
               onChange={e => setPrice(e.target.value)}
               required
             />
+            <label htmlFor="stock">Itens em estoque</label>
+            <input
+              type="number"
+              name="stock"
+              id="stock"
+              //placeholder="R$"
+              onChange={e => setStock(e.target.value)}
+              required
+            />
             <label htmlFor="description">Descrição</label>
             <textarea
               type="text"
@@ -110,7 +121,9 @@ export default function CreateProductPage() {
               id="category"
               onChange={e => setCategory(e.target.value)}
             >
-              <option value="aneis">Aneis</option>
+              <option selected value="aneis">
+                Aneis
+              </option>
               <option value="colares">Colares</option>
               <option value="brincos">Brincos</option>
               <option value="pulseiras">Pulseiras</option>
