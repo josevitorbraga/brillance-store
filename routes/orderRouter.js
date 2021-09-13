@@ -28,9 +28,9 @@ orderRouter.post("/create/new", (req, res) => {
 
   const preference = {
     back_urls: {
-      failure: `http://localhost:3000/pagamento/${newOrder._id}/`,
-      success: `http://localhost:3000/pagamento/${newOrder._id}/`,
-      pending: `http://localhost:3000/pagamento/${newOrder._id}/`,
+      failure: `https://brillance.herokuapp.com/pagamento/${newOrder._id}/`,
+      success: `https://brillance.herokuapp.com/pagamento/${newOrder._id}/`,
+      pending: `https://brillance.herokuapp.com/pagamento/${newOrder._id}/`,
     },
     auto_return: "approved",
     items: productsList,

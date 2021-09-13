@@ -3,6 +3,8 @@ import Order from "../models/OrderSchema.js";
 import Product from "../models/ProductsSchema.js";
 import mercadopago from "mercadopago";
 
+import { sendEmailOrderConfirmation } from "../utils/utils.js";
+
 const paymentRouter = Router();
 
 paymentRouter.get("/check/:orderId/:paymentId", async (req, res) => {
@@ -12,7 +14,13 @@ paymentRouter.get("/check/:orderId/:paymentId", async (req, res) => {
     .get(paymentId)
     .then(async response => {
       if (response.body.status === "approved") {
-        await Order.findByIdAndUpdate(orderId, { isPaid: true });
+        const userOrder = await Order.findById(orderId);
+
+        sendEmailOrderConfirmation(userOrder);
+
+        userOrder.isPaid = true;
+
+        userOrder.save();
 
         res.send(true);
       } else {

@@ -59,7 +59,19 @@ export const sendEmailOrderConfirmation = async emailData => {
     html: `
       <h1>Olá ${emailData.name},</h1>
       <p>Sua compra foi aprovada no nosso site, em breve enviaremos o código de rastreio dos seus produtinhos!!</p>
-      
+      <br/>
+      <ul>
+        ${emailData.productsList.map(
+          item => `
+        <li>
+        ${item.quantity}x - ${item.title} R$ ${item.unit_price}
+      </li>
+
+        `
+        )}
+      </ul>
+      <br/>
+      <h3>Valor total: R$ ${emailData.totalPrice}</h3>
     `, // html body
   });
   return;
