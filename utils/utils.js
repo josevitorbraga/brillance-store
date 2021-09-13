@@ -53,12 +53,17 @@ export const updateImage = async ({ product_id, imageFileName }) => {
 export const sendEmailOrderConfirmation = async emailData => {
   await transporter.sendMail({
     from: process.env.EMAIL_USER, // sender address
-    to: emailData.email, // list of receivers
+    to: [emailData.email, process.env.EMAIL_VENDOR], // list of receivers
     subject: `Pedido N° ${emailData._id} Realizado! - Brillance Store`, // Subject line
     text: "Sua compra foi aprovada no nosso site, em breve enviaremos o código de rastreio dos seus produtinhos!!", // plain text body
     html: `
       <h1>Olá ${emailData.name},</h1>
       <p>Sua compra foi aprovada no nosso site, em breve enviaremos o código de rastreio dos seus produtinhos!!</p>
+      <p>Segue abaixo o detalhe do pedido:</p>
+      <br/>
+      <h3><b>Destinatário:</b> ${emailData.name}</h3>
+      <h3><b>Endereço:</b> ${emailData.address}</h3>
+      <h3><b>Contato:</b> ${emailData.contact}</h3>
       <br/>
       <ul>
         ${emailData.productsList.map(
