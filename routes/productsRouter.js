@@ -41,10 +41,11 @@ productsRouter.get("/:id", async (req, res) => {
 productsRouter.put("/edit/:id", isAuth, async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
-  const { title, description, unit_price } = req.body;
+  const { title, description, unit_price, stock } = req.body;
   product.title = title;
   product.description = description;
   product.unit_price = unit_price;
+  product.stock = stock;
   await product.save();
   res.status(200).json(product);
 });

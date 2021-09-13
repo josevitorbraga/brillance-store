@@ -14,6 +14,7 @@ export default function EditProductPage(props) {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+  const [stock, setStock] = useState("");
 
   const handleChangeProduct = async e => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default function EditProductPage(props) {
       title: name,
       description: description,
       unit_price: price,
+      stock: stock,
     });
 
     if (response.status === 200) {
@@ -36,6 +38,7 @@ export default function EditProductPage(props) {
       setDescription(response.data.description);
       setPrice(response.data.unit_price);
       setImage(response.data.image);
+      setStock(response.data.stock);
     }
     getProduct();
   }, [productId]);
@@ -81,6 +84,15 @@ export default function EditProductPage(props) {
                 name="price"
                 defaultValue={price}
                 onChange={e => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="formDiv">
+              <label htmlFor="stock">Em estoque:</label>
+              <input
+                type="number"
+                name="stock"
+                defaultValue={stock}
+                onChange={e => setStock(e.target.value)}
               />
             </div>
             <button type="submit">Confirmar alteração</button>

@@ -60,6 +60,9 @@ export const ProductGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   border: solid 1px #e2e2e2;
+  background-color: #fbfbfb;
+  filter: drop-shadow(5px 15px 15px #c99b95);
+
   align-content: flex-start;
   justify-content: center;
 
