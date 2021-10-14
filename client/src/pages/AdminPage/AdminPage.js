@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { Container, MissingAuth, ProductGrid } from "./styles";
+import { Container, MissingAuth, ProductGrid, Switcher } from "./styles";
 import { BiPlus } from "react-icons/bi";
 
 export default function AdminPage() {
@@ -11,19 +11,27 @@ export default function AdminPage() {
 
   useEffect(() => {
     async function getAdminPermission() {
-      const response = await axios.get("/products/auth", {
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        setIsAuth(true);
-        setProductList(response.data);
-      }
+      await axios
+        .get("/products/auth", {
+          withCredentials: true,
+        })
+        .then(response => {
+          setIsAuth(true);
+          setProductList(response.data);
+        })
+        .catch(err => console.log(err));
     }
     getAdminPermission();
-  }, [productList]);
+  }, []);
 
   return (
     <div>
+      <Switcher>
+        <h2 className="selected">Produtos</h2> <h2>|</h2>
+        <Link to="/admin/pedidos">
+          <h2>Pedidos</h2>
+        </Link>
+      </Switcher>
       {isAuth ? (
         <Container>
           <div className="info">

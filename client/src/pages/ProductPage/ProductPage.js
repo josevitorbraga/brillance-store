@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Container, Data, ImageContainer, Header } from "./styles";
-import { BiArrowBack, BiCartAlt } from "react-icons/bi";
+import { BiArrowBack, BiCartAlt, BiBasket } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 import { useCartContext } from "../../context/CartContext";
@@ -83,7 +83,7 @@ export default function ProductPage(props) {
           <h2>R$ {product.unit_price}</h2>
           {product.stock >= 1 ? (
             <button onClick={() => handleAddToCart()}>
-              Adicionar ao carrinho
+              Adicionar ao carrinho <BiBasket size={20} />
             </button>
           ) : (
             <div className="outOfStock">

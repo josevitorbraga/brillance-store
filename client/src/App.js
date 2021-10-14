@@ -22,6 +22,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import PlaceOrderPage from "./pages/PlaceOrderPage/PlaceOrderPage";
 import StatusPedido from "./pages/StatusPedidoPage/StatusPedido";
+import AdminOrdersPage from "./pages/AdminOrders/AdminOrdersPage";
 
 export default function App() {
   const ref = useRef();
@@ -63,6 +64,7 @@ export default function App() {
             />
             <Route path="/produto/:productId" component={ProductPage} />
             <Route path="/categoria/:category" component={CategoryPage} />
+            <Route path="/admin/pedidos" component={AdminOrdersPage} exact />
             <Route path="/admin/home" component={AdminPage} exact />
             <Route path="/admin/login" component={LoginPage} exact />
             <Route path="/" component={HomePage} exact />

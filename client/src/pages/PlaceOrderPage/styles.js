@@ -64,6 +64,26 @@ export const ShippingForm = styled.form`
         inset 0 3px 0 #cee6a5;
     }
   }
+  .shipmentOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 1.6em 0;
+    margin: 1em 5%;
+    border-radius: 1em;
+
+    background-color: #6e7a58;
+    color: #fff;
+    box-shadow: 6px 7px 5px rgba(0, 0, 0, 0.2);
+
+    p {
+      font-size: 1.4em;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 0 2em 0.3em 2em;
+    }
+  }
 
   // Mobile
   @media (max-width: 800px) {

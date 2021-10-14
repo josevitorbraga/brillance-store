@@ -51,17 +51,27 @@ export const Data = styled.div`
     word-break: break-word;
   }
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background: #a5bf78;
     color: #fff;
     border: none;
-    padding: 0.5em 1em;
+    padding: 0.8em 1em;
     border-radius: 5px;
     font-weight: 700;
     cursor: pointer;
     filter: drop-shadow(5px 15px 15px #c99b95);
+    box-shadow: inset -3px -4px 0px #72874e;
+
+    svg {
+      margin-left: 5px;
+    }
 
     &:hover {
       background: #cee6a5;
+      box-shadow: inset -3px -4px 0px #a5bf78;
     }
   }
 
@@ -70,7 +80,8 @@ export const Data = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 2em 3em;
+    justify-content: center;
+    padding: 1em 3em;
     margin: 0 1.3em;
 
     filter: drop-shadow(5px 15px 15px #c99b95);
@@ -81,12 +92,16 @@ export const Data = styled.div`
       margin: 0;
     }
 
+    h2 {
+      margin-top: 0.8em;
+    }
+
     p {
       margin: 0.3em 0;
     }
 
     button {
-      margin-top: 1em;
+      margin-top: 1.7em;
       filter: none;
     }
   }

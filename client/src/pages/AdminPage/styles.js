@@ -13,9 +13,37 @@ export const MissingAuth = styled.div`
   }
 `;
 
+export const Switcher = styled.div`
+  display: flex;
+  justify-content: center;
+
+  border-bottom: 1px solid #e2e2e2;
+  margin: 0 30%;
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  a :hover {
+    font-size: 700;
+  }
+
+  h2 {
+    font-weight: 300;
+    padding: 0.4em 0.7em;
+    margin: 0;
+  }
+
+  .selected {
+    color: #e2e2e2;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  margin-top: 1em;
 
   .info {
     font-weight: 300;

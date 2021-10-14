@@ -16,13 +16,16 @@ paymentRouter.get("/check/:orderId/:paymentId", async (req, res) => {
       if (response.body.status === "approved") {
         const userOrder = await Order.findById(orderId);
 
-        sendEmailOrderConfirmation(userOrder);
+        if (userOrder) {
+          sendEmailOrderConfirmation(userOrder);
+          userOrder.isPaid = true;
+          userOrder.paymentCode = response.body.id;
 
-        userOrder.isPaid = true;
+          userOrder.save();
 
-        userOrder.save();
-
-        res.send(true);
+          return res.send(true);
+        }
+        return res.send(false);
       } else {
         const orderToDelete = await Order.findById(orderId);
 

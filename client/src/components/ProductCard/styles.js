@@ -49,7 +49,7 @@ export const Container = styled.div`
 
   @media (max-width: 800px) {
     width: 10em;
-    height: 17em;
+    height: 20em;
 
     margin: 0.5rem;
 
@@ -79,6 +79,10 @@ export const Container = styled.div`
       align-items: center;
       text-decoration: none;
       color: #000;
+
+      h3 {
+        font-size: 1em;
+      }
     }
 
     .productActions {

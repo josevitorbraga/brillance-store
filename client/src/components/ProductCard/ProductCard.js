@@ -45,12 +45,13 @@ export default function ProductCard(props) {
             >
               <BiEditAlt size={25} />
             </Link>
-            <Link
+            <a
+              href="#deleted"
               onClick={() => handleDeleteProduct(props.productData._id)}
               className="deleteProduct"
             >
               <BiEraser size={25} />
-            </Link>
+            </a>
           </div>
         </Container>
       ) : (

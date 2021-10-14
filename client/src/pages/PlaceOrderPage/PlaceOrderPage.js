@@ -12,6 +12,7 @@ export default function PlaceOrderPage() {
   const history = useHistory();
 
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isJundiai, setIsJundiai] = useState(true);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,12 +22,19 @@ export default function PlaceOrderPage() {
   const [number, setNumber] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+  const [shippment, setShippment] = useState("");
+  const [shippmentPrice, setShippmentPrice] = useState(0);
 
   const getCepAddress = async cep => {
     setCep(cep);
     await axios
       .get(`https://viacep.com.br/ws/${cep}/json/`)
       .then(res => {
+        if (res.data.localidade === "Jundiaí") {
+          setIsJundiai(false);
+        } else {
+          setIsJundiai(true);
+        }
         setAddress(`${res.data.logradouro}, ${res.data.bairro}`);
         setCity(res.data.localidade);
         setState(res.data.uf);
@@ -56,11 +64,18 @@ export default function PlaceOrderPage() {
       productsList: cart.products,
       totalPrice: cart.total,
       address: `${address}, ${number}, ${city}, ${state}, ${cep}`,
+      shippmentType: shippment,
+      shippmentPrice: shippmentPrice,
     });
 
     localStorage.removeItem("cart");
 
     window.location.replace(response.data);
+  };
+
+  const handleShipmentPrice = (target, price) => {
+    setShippment(target);
+    setShippmentPrice(price);
   };
 
   useEffect(() => {
@@ -171,6 +186,53 @@ export default function PlaceOrderPage() {
               name="state"
               id="state"
             />
+          </div>
+        </div>
+        <div className="shipmentOptions">
+          <p>Tipo de frete</p>
+
+          <div>
+            <div>
+              <input
+                required
+                onClick={e => handleShipmentPrice(e.target.value, 19.9)}
+                type="radio"
+                name="shippment"
+                value="padrao"
+              />
+              <label htmlFor="padrao">
+                Frete padrão: <em>R$ 19,90</em>
+              </label>
+            </div>
+
+            <div>
+              <input
+                required
+                onClick={e => handleShipmentPrice(e.target.value, 5)}
+                type="radio"
+                name="shippment"
+                disabled={isJundiai}
+                value="entregaPropria"
+              />
+              <label htmlFor="entregaPropria">
+                Entrega combinada (valido somente em Jundiaí/SP):{" "}
+                <em>R$ 5,00</em>
+              </label>
+            </div>
+
+            <div>
+              <input
+                required
+                onClick={e => handleShipmentPrice(e.target.value, 0)}
+                type="radio"
+                name="shippment"
+                disabled={isJundiai}
+                value="retirada"
+              />
+              <label htmlFor="retirada">
+                Retirada (valido somente em Jundiaí/SP): <em>R$ 0,00</em>
+              </label>
+            </div>
           </div>
         </div>
         <div className="submitBtn">

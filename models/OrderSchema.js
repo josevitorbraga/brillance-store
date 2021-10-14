@@ -13,18 +13,31 @@ const orderSchema = new Schema({
   },
   totalPrice: Number,
   address: String,
+  shippmentType: String,
   isPaid: {
     type: Boolean,
     default: false,
   },
-  paymentCode: String,
+  paymentCode: {
+    type: String,
+    default: null,
+  },
+  isShipped: {
+    type: Boolean,
+    default: false,
+  },
+  trackerId: {
+    type: String,
+    default: null,
+  },
   created_at: {
     type: Date,
     default: brazilDate,
   },
-  updated_at: {
+  expireAt: {
     type: Date,
-    default: brazilDate,
+    default: Date.now,
+    expires: "143800m",
   },
 });
 
