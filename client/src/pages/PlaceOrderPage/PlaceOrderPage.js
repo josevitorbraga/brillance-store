@@ -62,7 +62,7 @@ export default function PlaceOrderPage() {
       email: email,
       contact: contact,
       productsList: cart.products,
-      totalPrice: cart.total,
+      totalPrice: cart.total + shippmentPrice,
       address: `${address}, ${number}, ${city}, ${state}, ${cep}`,
       shippmentType: shippment,
       shippmentPrice: shippmentPrice,
