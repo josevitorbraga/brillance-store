@@ -58,12 +58,12 @@ export const Table = styled.table`
   td {
     padding: 1em 1em;
 
-    span {
+    .doneBtn {
       color: #fff;
       background-color: #4bb543;
-      padding: 1em;
+      padding: 0.6em 0.6em 0.6em 0.8em;
       border-radius: 50%;
-      border: 3px solid #000;
+      border: 1px solid #000;
     }
   }
 `;

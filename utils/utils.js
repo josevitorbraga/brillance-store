@@ -79,5 +79,37 @@ export const sendEmailOrderConfirmation = async emailData => {
       <h3>Valor total: R$ ${emailData.totalPrice}</h3>
     `, // html body
   });
-  return;
+};
+
+export const sendEmailOrderShipped = async emailData => {
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER, // sender address
+    to: [emailData.email, process.env.EMAIL_VENDOR], // list of receivers
+    subject: `Pedido N° ${emailData._id} Enviado! - Brillance Store`, // Subject line
+    text: "Uhuul seu pedido está a caminho!!", // plain text body
+    html: `
+      <h1>Olá ${emailData.name},</h1>
+      <p>Seu pedido foi enviado!!!</p>
+      <p>Segue abaixo o detalhe do pedido:</p>
+      <br/>
+      <h3><b>Destinatário:</b> ${emailData.name}</h3>
+      <h3><b>Endereço:</b> ${emailData.address}</h3>
+      <h3><b>Contato:</b> ${emailData.contact}</h3>
+      <br/>
+      <h3>Rastreamento: ${emailData.trackerId}</h3>
+      <br/>
+      <ul>
+        ${emailData.productsList.map(
+          item => `
+        <li>
+        ${item.quantity}x - ${item.title} R$ ${item.unit_price}
+      </li>
+
+        `
+        )}
+      </ul>
+      <br/>
+      <h3>Valor total: R$ ${emailData.totalPrice}</h3>
+    `, // html body
+  });
 };

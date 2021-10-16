@@ -11,10 +11,6 @@ export default function AdminOrdersPage() {
   const [openOrders, setOpenOrders] = useState(0);
   const [completedOrders, setCompletedOrders] = useState(0);
 
-  const handleShipProduct = () => {
-    // TODO
-  };
-
   useEffect(() => {
     const getOrders = async () => {
       await axios
@@ -27,6 +23,7 @@ export default function AdminOrdersPage() {
   }, []);
 
   useEffect(() => {
+    console.log(orders);
     orders.forEach(order =>
       order.isShipped
         ? setCompletedOrders(completedOrders + 1)
@@ -62,6 +59,7 @@ export default function AdminOrdersPage() {
             <TableHeader>ID</TableHeader>
             <TableHeader>Destinatário</TableHeader>
             <TableHeader>Endereço</TableHeader>
+            <TableHeader>Entrega</TableHeader>
             <TableHeader>Produtos</TableHeader>
             <TableHeader>Status</TableHeader>
             <TableHeader>Açoes</TableHeader>
@@ -74,6 +72,7 @@ export default function AdminOrdersPage() {
                 <td>{order._id}</td>
                 <td>{order.name}</td>
                 <td>{order.address}</td>
+                <td>{order.shippmentType}</td>
                 <td>
                   {order.productsList.map(product => (
                     <div key={product._id}>
@@ -89,13 +88,13 @@ export default function AdminOrdersPage() {
                 )}
                 <td>
                   {order.isShipped ? (
-                    <span>
+                    <a className="doneBtn" href={`/admin/pedidos/${order._id}`}>
                       <MdDone />
-                    </span>
+                    </a>
                   ) : (
-                    <a onClick={() => handleShipProduct()} href="#shippment">
+                    <a href={`/admin/pedidos/${order._id}`}>
                       <MdLocalShipping />
-                      Despachar
+                      Detalhes
                     </a>
                   )}
                 </td>
@@ -105,6 +104,7 @@ export default function AdminOrdersPage() {
                 <td>{order._id}</td>
                 <td>{order.name}</td>
                 <td>{order.address}</td>
+                <td>{order.shippmentType}</td>
                 <td>
                   {order.productsList.map(product => (
                     <div key={product._id}>
@@ -122,9 +122,9 @@ export default function AdminOrdersPage() {
                   {order.isShipped ? (
                     <MdDone />
                   ) : (
-                    <a onClick={() => handleShipProduct()} href="#shippment">
+                    <a href={`/admin/pedidos/${order._id}`}>
                       <MdLocalShipping />
-                      Despachar
+                      Detalhes
                     </a>
                   )}
                 </td>

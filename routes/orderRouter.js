@@ -6,6 +6,8 @@ import Product from "../models/ProductsSchema.js";
 
 import mercadopago from "mercadopago";
 
+import { sendEmailOrderShipped } from "../utils/utils.js";
+
 const orderRouter = Router();
 
 orderRouter.post("/create/new", (req, res) => {
@@ -54,7 +56,7 @@ orderRouter.post("/create/new", (req, res) => {
       items: productsList,
     })
     .then(function (response) {
-      return res.send(response.body.sandbox_init_point);
+      return res.send(response.body.init_point);
     })
     .catch(function (error) {
       console.log(error);
@@ -67,6 +69,28 @@ orderRouter.get("/get", isAuth, async (req, res) => {
     res.send("Sem pedidos recentes");
   }
   res.json(allOrders);
+});
+
+orderRouter.get("/get/:id", isAuth, async (req, res) => {
+  const { id } = req.params;
+  await Order.findById(id)
+    .then(response => res.json(response))
+    .catch(error => res.send("Pedido não encontrado"));
+});
+
+orderRouter.post("/update", isAuth, async (req, res) => {
+  const { orderId, trackerId } = req.body;
+
+  const order = await Order.findById(orderId);
+
+  order.trackerId = trackerId;
+  order.isShipped = true;
+
+  order.save();
+
+  sendEmailOrderShipped(order)
+    .then(response => res.send("Produto despachado"))
+    .catch(error => res.send(error));
 });
 
 export default orderRouter;
