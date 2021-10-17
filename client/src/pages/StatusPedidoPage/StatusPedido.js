@@ -15,7 +15,7 @@ export default function StatusPedido(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3333/payment/check/${orderId}/${query.payment_id}`)
+      .get(`/payment/check/${orderId}/${query.payment_id}`)
       .then(response => {
         if (response.data === true) {
           console.log(response);
