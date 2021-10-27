@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Slider from "infinite-react-carousel";
 
-import banerColares from "./bannerColar.jpeg";
+import banerColares from "./bannerColar.jpg";
 import bannerColecao from "./bannerColecao.jpeg";
 
 export default function SliderCarrousel() {
